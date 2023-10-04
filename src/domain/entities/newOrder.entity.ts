@@ -1,35 +1,40 @@
 import { type NewOrderDto } from "src/main/core/dtos/order.dto";
 
+export enum PaymentStatus {
+  PENDING = "PENDING",
+  PAID = "PAID",
+  OVERDUE = "OVERDUE",
+}
+
 interface newOrderProps extends NewOrderDto {
   dueAt: Date;
+  paymentStatus: PaymentStatus;
 }
 
 export class NewOrder {
   readonly clientName: string;
+  readonly clientPhone: string | null;
   readonly quantity: number;
   readonly productName: string;
   readonly productType: string;
   readonly value: number;
-  readonly paymentStatus: string;
-  private _dueAt: Date;
+  readonly paymentStatus: PaymentStatus;
+  public dueAt: Date;
 
   private constructor(props: newOrderProps) {
     this.clientName = props.clientName;
+    this.clientPhone = props.clientPhone;
     this.quantity = props.quantity;
     this.productName = props.productName;
     this.productType = props.productType;
     this.value = props.value;
     this.paymentStatus = props.paymentStatus;
-    this._dueAt = props.dueAt;
-  }
-
-  get dueAt() {
-    return this._dueAt;
+    this.dueAt = props.dueAt;
   }
 
   static create(input: NewOrderDto) {
     const newOrder = new NewOrder({ ...input, dueAt: null });
-    newOrder._dueAt = this.setDueDate();
+    newOrder.dueAt = this.setDueDate();
     return newOrder;
   }
 

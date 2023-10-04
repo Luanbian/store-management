@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsNumber, IsString, MaxLength, MinLength } from "class-validator";
+import { PaymentStatus } from "src/domain/entities/newOrder.entity";
 
 export class NewOrderDto {
   @MinLength(3, {
@@ -28,9 +29,11 @@ export class NewOrderDto {
   @IsNotEmpty()
   value: number;
 
-  @IsString()
   @IsNotEmpty({
     message: "Selecione a siatuação do pagamento",
   })
-  paymentStatus: string;
+  paymentStatus: PaymentStatus;
+
+  @IsString()
+  clientPhone: string;
 }
