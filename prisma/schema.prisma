@@ -52,6 +52,7 @@ model Order {
   paymentStatus  PaymentStatus @default(PENDING)
   paidAt         DateTime?
   paymentVoucher String?
+  paymentMethod  String?
   dueAt          DateTime
   items          Item[]
   createdAt      DateTime      @default(now())
