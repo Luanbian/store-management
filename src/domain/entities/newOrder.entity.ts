@@ -7,6 +7,7 @@ interface newOrderProps extends NewOrderDto {
 export class NewOrder {
   readonly clientName: string;
   readonly quantity: number;
+  readonly productName: string;
   readonly productType: string;
   readonly value: number;
   readonly paymentStatus: string;
@@ -15,6 +16,7 @@ export class NewOrder {
   private constructor(props: newOrderProps) {
     this.clientName = props.clientName;
     this.quantity = props.quantity;
+    this.productName = props.productName;
     this.productType = props.productType;
     this.value = props.value;
     this.paymentStatus = props.paymentStatus;

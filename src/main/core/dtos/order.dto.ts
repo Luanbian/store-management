@@ -20,7 +20,8 @@ export class NewOrderDto {
   quantity: number;
 
   @IsString()
-  @IsNotEmpty({})
+  @IsNotEmpty()
+  productName: string;
   productType: string;
 
   @IsNumber()
