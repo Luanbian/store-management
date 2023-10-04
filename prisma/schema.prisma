@@ -48,12 +48,13 @@ enum PaymentStatus {
 }
 
 model Order {
-  id            Int           @id @default(autoincrement())
-  paymentStatus PaymentStatus @default(PENDING)
-  paidAt        DateTime?
-  dueAt         DateTime
-  items         Item[]
-  createdAt     DateTime      @default(now())
-  customer      Customer      @relation(fields: [customerId], references: [id])
-  customerId    Int
+  id             Int           @id @default(autoincrement())
+  paymentStatus  PaymentStatus @default(PENDING)
+  paidAt         DateTime?
+  paymentVoucher String?
+  dueAt          DateTime
+  items          Item[]
+  createdAt      DateTime      @default(now())
+  customer       Customer      @relation(fields: [customerId], references: [id])
+  customerId     Int
 }
