@@ -1,5 +1,10 @@
 import { IsNotEmpty, IsNumber, IsString, MaxLength, MinLength } from "class-validator";
-import { PaymentStatus } from "src/domain/entities/order.entity";
+
+export enum PaymentStatus {
+  PENDING = "PENDING",
+  PAID = "PAID",
+  OVERDUE = "OVERDUE",
+}
 
 export class NewOrderDto {
   @MinLength(3, {
