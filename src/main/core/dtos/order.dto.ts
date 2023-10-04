@@ -17,17 +17,17 @@ export class NewOrderDto {
   @IsNotEmpty({
     message: "Nome não pode ser vazio",
   })
-  ClientName: string;
+  clientName: string;
 
   @IsNotEmpty({
     message: "Quantidade não pode ser vazio",
   })
   @IsNumber()
-  Quantity: number;
+  quantity: number;
 
   @IsString()
   @IsNotEmpty({})
-  ProductType: string;
+  productType: string;
 
   @IsNumber()
   @IsNotEmpty()
