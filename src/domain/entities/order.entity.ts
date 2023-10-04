@@ -6,12 +6,12 @@ export enum PaymentStatus {
   OVERDUE = "OVERDUE",
 }
 
-interface newOrderProps extends NewOrderDto {
+interface OrderProps extends NewOrderDto {
   dueAt: Date;
   paymentStatus: PaymentStatus;
 }
 
-export class NewOrder {
+export class Order {
   readonly clientName: string;
   readonly clientPhone: string | null;
   readonly quantity: number;
@@ -21,7 +21,7 @@ export class NewOrder {
   readonly paymentStatus: PaymentStatus;
   public dueAt: Date;
 
-  private constructor(props: newOrderProps) {
+  private constructor(props: OrderProps) {
     this.clientName = props.clientName;
     this.clientPhone = props.clientPhone;
     this.quantity = props.quantity;
@@ -33,7 +33,7 @@ export class NewOrder {
   }
 
   static create(input: NewOrderDto) {
-    const newOrder = new NewOrder({ ...input, dueAt: null });
+    const newOrder = new Order({ ...input, dueAt: null });
     newOrder.dueAt = this.setDueDate();
     return newOrder;
   }

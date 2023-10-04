@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsNumber, IsString, MaxLength, MinLength } from "class-validator";
-import { PaymentStatus } from "src/domain/entities/newOrder.entity";
+import { PaymentStatus } from "src/domain/entities/order.entity";
 
 export class NewOrderDto {
   @MinLength(3, {
