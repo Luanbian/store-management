@@ -1,12 +1,27 @@
-import { Controller, Get } from "@nestjs/common";
+import { Body, Controller, Get, Post, ValidationPipe } from "@nestjs/common";
 import { type Order } from "@prisma/client";
-import { AppService } from "../../data/services/app.service";
+import { HttpResponse } from "src/@types/http";
+import { NewOrderDto } from "src/main/core/dtos/order.dto";
+import { OrderService } from "../../data/services/new.order.service";
+import { noContent, ok, serverError } from "../helper/http.helper";
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly orderService: OrderService) {}
 
   @Get("/order")
   getHello(): Promise<Order[]> {
-    return this.appService.getOder();
+    return this.orderService.getOder();
+  }
+
+  @Post("/order")
+  async order(@Body(new ValidationPipe()) orderDto: NewOrderDto): Promise<HttpResponse> {
+    try {
+      const res = await this.orderService.createOrder(orderDto);
+      if (!res) return noContent();
+      return ok(res);
+    } catch (error) {
+      console.error(error);
+      return serverError();
+    }
   }
 }
