@@ -1,11 +1,13 @@
-import { NewOrderDto, PaymentStatus } from "src/main/core/dtos/order.dto";
+import { PaymentStatus } from "src/main/core/dtos/order.dto";
 import { ItemEntity } from "./item.entity";
 
-export interface OrderEntityProps extends NewOrderDto {
+export interface OrderEntityProps {
   id: string;
-  productId: string;
-  priceId: string;
-  itemId: string;
+  paymentStatus: PaymentStatus;
+  paidAt: Date | null;
+  paymentVoucher: string | null;
+  paymentMethod: string | null;
+  items: ItemEntity[];
 }
 export class OrderEntity {
   readonly id: string;
@@ -20,24 +22,10 @@ export class OrderEntity {
   private constructor(props: OrderEntityProps) {
     this.id = props.id;
     this.paymentStatus = props.paymentStatus;
-    this.paidAt = null;
-    this.paymentVoucher = null;
-    this.paymentMethod = null;
-    this.items = [
-      {
-        id: props.itemId,
-        product: {
-          id: props.productId,
-          name: props.productName,
-          type: props.productType,
-        },
-        price: {
-          id: props.priceId,
-          value: props.value,
-        },
-        quantity: props.quantity,
-      },
-    ];
+    this.paidAt = props.paidAt;
+    this.paymentVoucher = props.paymentVoucher;
+    this.paymentMethod = props.paymentMethod;
+    this.items = props.items;
     this.createdAt = new Date();
   }
 

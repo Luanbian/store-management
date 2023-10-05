@@ -1,7 +1,7 @@
 import { PriceEntity } from "./price.entity";
 import { ProductEntity } from "./product.entity";
 
-interface ItemEntityProps {
+export interface ItemEntityProps {
   id: string;
   quantity: number;
   price: PriceEntity;

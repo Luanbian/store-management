@@ -1,6 +1,6 @@
 import { OrderEntity } from "./order.entity";
 
-interface CustomerEntityProps {
+export interface CustomerEntityProps {
   id: string;
   name: string;
   phone: string | null;
@@ -12,7 +12,7 @@ export class CustomerEntity {
   readonly phone: string | null;
   readonly orders: OrderEntity[];
 
-  constructor(props: CustomerEntityProps) {
+  private constructor(props: CustomerEntityProps) {
     this.id = props.id;
     this.name = props.name;
     this.phone = props.phone;

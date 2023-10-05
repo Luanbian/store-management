@@ -10,7 +10,7 @@ export class AppController {
   @Post("/order")
   async order(@Body(new ValidationPipe()) orderDto: NewOrderDto): Promise<HttpResponse> {
     try {
-      const res = await this.orderService.createOrder(orderDto);
+      const res = await this.orderService.perform(orderDto);
       if (!res) return noContent();
       return ok(res);
     } catch (error) {

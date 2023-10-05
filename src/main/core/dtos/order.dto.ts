@@ -35,10 +35,14 @@ export class NewOrderDto {
   value: number;
 
   @IsNotEmpty({
-    message: "Selecione a siatuação do pagamento",
+    message: "Selecione a situação do pagamento",
   })
   paymentStatus: PaymentStatus;
 
   @IsString()
   clientPhone: string;
+  paymentVoucher: string;
+  paymentMethod: string;
+
+  paidAt: Date;
 }
