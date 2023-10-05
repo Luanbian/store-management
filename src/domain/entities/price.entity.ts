@@ -1,7 +1,4 @@
-import { ItemEntity } from "./item.entity";
-
 export class PriceEntity {
-  readonly id: number;
+  readonly id: string;
   readonly value: number;
-  readonly items: ItemEntity[];
 }

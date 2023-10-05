@@ -1,8 +1,5 @@
-import { ItemEntity } from "./item.entity";
-
 export class ProductEntity {
-  readonly id: number;
+  readonly id: string;
   readonly name: string;
   readonly type: string;
-  readonly items: ItemEntity[];
 }
