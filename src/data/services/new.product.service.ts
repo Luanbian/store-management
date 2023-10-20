@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { randomUUID } from "crypto";
+import { PriceEntity, PriceEntityProps } from "src/domain/entities/price.entity";
 import { ProductEntity, ProductEntityProps } from "src/domain/entities/product.entity";
 import { DbProduct } from "src/infra/repository/db.product.table";
 import { NewProductDto } from "src/main/core/dtos/product.dto";
@@ -8,9 +9,10 @@ import { NewProductDto } from "src/main/core/dtos/product.dto";
 export class ProductService {
   constructor(private readonly repository: DbProduct) {}
 
-  async perform(productDto: NewProductDto): Promise<ProductEntity> {
+  async perform(productDto: NewProductDto): Promise<{ product: ProductEntity; price: PriceEntity }> {
     const product = await this.createProduct(productDto.name, productDto.type);
-    return product;
+    const price = await this.createPrice(productDto.value);
+    return { product, price };
   }
 
   private async createProduct(name: string, type: string) {
@@ -20,5 +22,13 @@ export class ProductService {
       type,
     };
     return ProductEntity.create(productEntityProps);
+  }
+
+  private async createPrice(value: number) {
+    const priceEntityProps: PriceEntityProps = {
+      id: randomUUID(),
+      value,
+    };
+    return PriceEntity.create(priceEntityProps);
   }
 }
