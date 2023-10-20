@@ -27,12 +27,11 @@ export class NewOrderDto {
 
   @IsString()
   @IsNotEmpty()
-  productName: string;
-  productType: string;
+  product: string;
 
-  @IsNumber()
+  @IsString()
   @IsNotEmpty()
-  value: number;
+  value: string;
 
   @IsNotEmpty({
     message: "Selecione a situação do pagamento",

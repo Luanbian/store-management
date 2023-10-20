@@ -1,23 +1,20 @@
-import { PriceEntity } from "./price.entity";
-import { ProductEntity } from "./product.entity";
-
 export interface ItemEntityProps {
   id: string;
   quantity: number;
-  price: PriceEntity;
-  product: ProductEntity;
+  priceId: string;
+  productId: string;
 }
 
 export class ItemEntity {
   readonly id: string;
   readonly quantity: number;
-  readonly price: PriceEntity;
-  readonly product: ProductEntity;
+  readonly priceId: string;
+  readonly productId: string;
 
   private constructor(props: ItemEntityProps) {
     this.id = props.id;
-    this.price = props.price;
-    this.product = props.product;
+    this.priceId = props.priceId;
+    this.productId = props.productId;
     this.quantity = props.quantity;
   }
 
