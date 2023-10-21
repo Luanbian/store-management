@@ -9,10 +9,21 @@ import { NewProductDto } from "src/main/core/dtos/product.dto";
 export class ProductService {
   constructor(private readonly repository: DbProduct) {}
 
-  async perform(productDto: NewProductDto): Promise<{ product: ProductEntity; price: PriceEntity }> {
+  async post(productDto: NewProductDto): Promise<{ product: ProductEntity; price: PriceEntity }> {
     const product = await this.createProduct(productDto.name, productDto.type);
     const price = await this.createPrice(productDto.value);
     return { product, price };
+  }
+
+  async get(): Promise<
+    {
+      id: number;
+      name: string;
+      type: string;
+    }[]
+  > {
+    const list = await this.repository.get();
+    return list;
   }
 
   private async createProduct(name: string, type: string) {
