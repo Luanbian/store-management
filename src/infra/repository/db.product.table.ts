@@ -9,4 +9,8 @@ export class DbProduct {
     const result = await this.db.product.findMany();
     return result;
   }
+
+  async create({ id, name, type }: { id: string; name: string; type: string }): Promise<void> {
+    await this.db.product.create({ data: { id, name, type } });
+  }
 }
