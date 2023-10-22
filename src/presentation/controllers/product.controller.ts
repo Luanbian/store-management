@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post, ValidationPipe } from "@nestjs/common";
 import { HttpResponse } from "src/@types/http";
-import { ProductService } from "src/data/services/new.product.service";
+import { ProductService } from "src/data/services/product.service";
 import { NewProductDto } from "src/main/core/dtos/product.dto";
 import { noContent, ok, serverError } from "../helper/http.helper";
 

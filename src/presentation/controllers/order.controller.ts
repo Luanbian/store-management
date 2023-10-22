@@ -1,7 +1,7 @@
 import { Body, Controller, Post, ValidationPipe } from "@nestjs/common";
 import { HttpResponse } from "src/@types/http";
 import { NewOrderDto } from "src/main/core/dtos/order.dto";
-import { OrderService } from "../../data/services/new.order.service";
+import { OrderService } from "../../data/services/order.service";
 import { noContent, ok, serverError } from "../helper/http.helper";
 
 @Controller()
