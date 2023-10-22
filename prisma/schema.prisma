@@ -11,34 +11,34 @@ datasource db {
 }
 
 model Customer {
-  id     Int     @id @default(autoincrement())
+  id     String  @id @unique
   name   String
   phone  String?
   orders Order[]
 }
 
 model Product {
-  id    Int    @id @default(autoincrement())
+  id    String @id @unique
   name  String
   type  String
   items Item[]
 }
 
 model Price {
-  id    Int    @id @default(autoincrement())
+  id    String @id @unique
   value Float
   items Item[]
 }
 
 model Item {
-  id        Int     @id @default(autoincrement())
+  id        String  @id @unique
   quantity  Int
   product   Product @relation(fields: [productId], references: [id])
   price     Price   @relation(fields: [priceId], references: [id])
-  productId Int
-  priceId   Int
+  productId String
+  priceId   String
   order     Order?  @relation(fields: [orderId], references: [id])
-  orderId   Int?
+  orderId   String?
 }
 
 enum PaymentStatus {
@@ -48,7 +48,7 @@ enum PaymentStatus {
 }
 
 model Order {
-  id             Int           @id @default(autoincrement())
+  id             String        @id @unique
   paymentStatus  PaymentStatus @default(PENDING)
   paidAt         DateTime?
   paymentVoucher String?
@@ -57,5 +57,5 @@ model Order {
   items          Item[]
   createdAt      DateTime      @default(now())
   customer       Customer      @relation(fields: [customerId], references: [id])
-  customerId     Int
+  customerId     String
 }
